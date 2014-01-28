@@ -1,0 +1,378 @@
+﻿@model FacultyEval.Models.EvaluationResult
+
+@{
+    ViewBag.Title = "Evaluate Faculty | Faculty Evaluation System";
+}
+
+<h2 class="align-middle">Evaluate Faculty</h2>
+
+<div id="EvaluationBox">
+    @using (@Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "Oooppss something went wrong. Please check your inputs");
+        @Html.HiddenFor(u => u.scheduleID, new { @Value = ViewBag.evalID })
+        <div>
+            <ul>
+                <li id="ctn1">
+                    <p id="ctn1">Part I: PERFORMANCE(70%)</p>
+                    <ul>
+                        <li>
+                            Insturctions:
+                            <ul>
+                                <li>This form is used for evaluating the<br />performance of your faculty in this rating period.</li>
+                                <li>Please observe fairness and objectivity<br />when rating your faculty</li>
+                                <li>In rating the performance, fill the box<br />the number that most objectively represents<br />the level of performance guided by the<br />definitions of rating under each factor</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            Directions: Fill the box with the appropriate<br />
+                            rating.Use the following rating scale.
+                            <ul>
+                                <li>10 - Outstanding (Always shown the characteristics)</li>
+                                <li>8 - Very Satisfactory (Frequently shown the characteristics)</li>
+                                <li>6 - Satisfactory (Occasionally shown the characteristics)</li>
+                                <li>4 - Unsatisfactory (Seldom shown the characteristics)</li>
+                                <li>2 - Poor (Never shown the characteristics)</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            1. Commitment
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question1, new { @class = "answerBox" })
+                                        <span class="question">1.1 Starts and dismisses class on time</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question2, new { @class = "answerBox" })
+                                        <span class="question">1.2 Starts and dismisses class on time</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question3, new { @class = "answerBox" })
+                                        <span class="question">1.3 Starts and dismisses class on time</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question4, new { @class = "answerBox" })
+                                        <span class="question">1.4 Starts and dismisses class on time</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question5, new { @class = "answerBox" })
+                                        <span class="question">1.5 Starts and dismisses class on time</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            2. Knowledge of the Subject Matter
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question6, new { @class = "answerBox" })
+                                        <span class="question">2.1 Demonstrates mastery of the subject matter</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question7, new { @class = "answerBox" })
+                                        <span class="question">2.2 Explains the subject matter without <br />completely relying on the precribed <br /> textbooks and/or other references</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question8, new { @class = "answerBox" })
+                                        <span class="question">2.3 Integrates current and relevant <br /> information and development to <br />supplement instruction</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question9, new { @class = "answerBox" })
+                                        <span class="question">2.4 Shows confidence of the delivery of<br />lectures and conducts of discussions</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question10, new { @class = "answerBox" })
+                                        <span class="question">2.5 Conveys ideas on the lesson<br />through a good command of<br />the language of instruction</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            3. Teaching for Independent Learning
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question11, new { @class = "answerBox" })
+                                        <span class="question">3.1 Provides appropriate worksheets or<br />exercises or activities or handouts to<br />students</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question12, new { @class = "answerBox" })
+                                        <span class="question">3.2 Promotes self-reliance through<br />independent studies</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question13, new { @class = "answerBox" })
+                                        <span class="question">3.3 Allows students to make their own<br />decision and be accountable for<br />their performance</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question14, new { @class = "answerBox" })
+                                        <span class="question">3.4 Encourages students to ask questions<br />raise problems and present<br />solutions</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question15, new { @class = "answerBox" })
+                                        <span class="question">3.5 Motivates students to do their best</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            4. Management of Instruction
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question16, new { @class = "answerBox" })
+                                        <span class="question">4.1 Organizes teaching-learning<br />and prescribes reasonable<br />requirements</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question17, new { @class = "answerBox" })
+                                        <span class="question">4.2 Practices in classroom management<br />and discipline</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question18, new { @class = "answerBox" })
+                                        <span class="question">4.3 Utilizes instructional aids and<br />materials to make teaching-learning<br />relevant and meaningful</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question19, new { @class = "answerBox" })
+                                        <span class="question">4.4 Uses varied teching methods and<br />strategies</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question20, new { @class = "answerBox" })
+                                        <span class="question">4.5 Evaluates students performance and<br />informs them of the outcomes</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li id="ctn2">
+                    <p>Part II: Critical Factors(30%)</p>
+                    <ul>
+                        <li>
+                            Directions: This form seeks to evaluate the personal and professional<br />
+                            characteristics of the faculty. Please fill the box that most<br />
+                            objectively represents the level of performance guided by<br />
+                            the definitions of rating under each factor.<br />
+                            <ul>
+                                <li>10 - Outstanding (Always shown the characteristics)</li>
+                                <li>8 - Very Satisfactory (Frequently shown the characteristics)</li>
+                                <li>6 - Satisfactory (Occasionally shown the characteristics)</li>
+                                <li>4 - Unsatisfactory (Seldom shown the characteristics)</li>
+                                <li>2 - Poor (Never shown the characteristics)</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            A. PERSONAL AND PROFESSIONAL CHARACTERISTICS(20%)
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question21, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Courtesy and Human Relations - </span> polite, kind and<br />thoughtful behavior toward others in manner of speech and<br />actuation. Integrates convern for people at work, office, client<br />and supervisor-subordinate relationship into work situations </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question22, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Leadership - </span> the manner of guiding, influencing, motivating<br />and developing confidence of others to work as team and <br />accomplish assigned task, leading the organizational unit<br />to achieve its goals and objectives enthusiastically </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question23, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Stress Tolerance - </span> Stability of performance under pressure<br />or opposition. Consistently confident and positive even during<br />stressful conditions at work </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question24, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Honesty and Integrity - shows uprightness, fairness<br />and sincerity in his intentions, work actions.</span>  </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question25, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Inititiative/Resourcefullness - </span> Starts action, projects<br />and performs assigned tasks without being told and under<br />minimal supervisions </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question26, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Attire/Grooming - </span> presents a neat and presentable<br />appearance, wears proper uniform/attire and ID </span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.TextBoxFor(q => q.question27, new { @class = "answerBox" })
+                                        <span class="question"><span class="questionTitle">Physical and Mental Health - </span> possesses high<br />intellectual capacity and physically fit for work, and emotional<br />adjusted </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            B. PUNCTUALITY AND ATTENDANCE(10%)
+                            1. Punctuality(5%)
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question28,"10")
+                                        <span class="question">No more than 3 times tardy/undertime during the last 6 months</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question28, "8")
+                                        <span class="question">4-6 times tardy/undertime</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question28, "6")
+                                        <span class="question">7-10 times tardy/undertime</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question28, "4")
+                                        <span class="question">11-15 times tardy/undertime</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question28, "2")
+                                        <span class="question">More than 15 times tardy/undertime</span>
+                                    </p>
+                                </li>
+                            </ul>
+
+                            1. Attendance(5%)
+                            <ul>
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question29, "10" )
+                                        <span class="question">Not more than 4 days absent, absences<br />applied for in accordance with regulations</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question29, "8" )
+                                        <span class="question">5-8 days absent</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question29, "6" )
+                                        <span class="question">9-12 days absent</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question29, "4")
+                                        <span class="question">13-16 days absent</span>
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        @Html.RadioButtonFor(q => q.question29, "2")
+                                        <span class="question">More than 16  days absent</span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+
+                <li id="ctn3">
+                    @Html.LabelFor(q => q.comments)<br />
+                    @Html.TextAreaFor(q => q.comments)
+                    <p>
+                        <input type="submit" name="submit" value="Submit Evaluation" />
+                    </p>
+                </li>
+
+                <p>
+                    <input type="button" id="prev" value="Previous" />
+                    <input type="button" id="next" value="Next" />
+                </p>
+            </ul>
+        </div>
+    }
+
+</div>

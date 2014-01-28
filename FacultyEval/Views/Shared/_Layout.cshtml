@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+</head>
+<body>
+    @RenderBody()
+
+    
+    @RenderSection("scripts", required: false)
+
+
+    <script type="text/javascript">
+        var contentArray = new Array("#ctn1", "#ctn2", "#ctn3"); var currentContent = 0; $(function () { for (i = 0; i < contentArray.length; i++) { $(contentArray[i]).hide() } $(contentArray[currentContent]).fadeIn(500); $("#next").click(function () { currentContent++; if (currentContent < 3) { $(contentArray[currentContent - 1]).fadeOut(500); setTimeout(function () { $(contentArray[currentContent]).fadeIn(500) }, 500) } else { currentContent-- } console.log(currentContent); jQuery("html, body").animate({ scrollTop: 0 }, 500); return false }); $("#prev").click(function () { currentContent--; if (currentContent >= 0) { $(contentArray[currentContent + 1]).fadeOut(500); setTimeout(function () { $(contentArray[currentContent]).fadeIn(500) }, 500) } else { currentContent++ } console.log(currentContent); jQuery("html, body").animate({ scrollTop: 0 }, 500); return false }) })
+    </script>
+
+</body>
+</html>

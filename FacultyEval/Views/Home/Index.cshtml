@@ -1,0 +1,30 @@
+﻿@model FacultyEval.Models.StudentModel
+
+@{
+    ViewBag.Title = "Student Authentication Page";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Student authentication failure");
+    <div>
+        <fieldset>
+            <legend>Student Authentication</legend>
+
+            <div>@Html.LabelFor(s => s.studentID)</div>
+            <div>
+                @Html.TextBoxFor(s => s.studentID)
+                @Html.ValidationMessageFor(s => s.studentID)
+            </div>
+
+            <div>@Html.LabelFor(s => s.studentCOR)</div>
+            <div>
+                @Html.TextBoxFor(s => s.studentCOR)
+                @Html.ValidationMessageFor(s => s.studentCOR)
+            </div>
+
+            <input type="submit" value="Login" />
+        </fieldset>
+    </div>
+}

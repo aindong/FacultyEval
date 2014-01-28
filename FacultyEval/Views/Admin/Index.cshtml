@@ -1,0 +1,65 @@
+﻿@model FacultyEval.Models.EvaluationSchedule
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.RouteLink("Log out", new { controller = "Admin", action = "AdminOut" })
+
+
+<div>
+    <h3>Evaluation Settings</h3>
+
+    <div>
+        <h4>Last Settings</h4>
+        <p>Evaluation Start Date: <span style="font-weight: bold">@ViewBag.lastStart</span></p>
+        <p>Evaluation End Date: <span style="font-weight: bold">@ViewBag.lastEnd</span></p>
+
+        <p>Evaluation Status: <span style="font-weight: bold">@ViewBag.evalStatus</span></p>
+    </div>
+
+    @using(Html.BeginForm("ApplySettings","Admin"))
+    {
+        <fieldset>
+            <div>
+                @Html.LabelFor(s => s.EvaluationStart);
+            </div>
+            <div>
+                @Html.TextBoxFor(s => s.EvaluationStart, new { id = "evaluationStart" })
+                @Html.ValidationMessageFor(s => s.EvaluationStart)
+            </div>
+
+            <div>
+                @Html.LabelFor(s => s.EvaluationEnd);
+            </div>
+            <div>
+                @Html.TextBoxFor(s => s.EvaluationEnd, new { id = "evaluationEnd" })
+                @Html.ValidationMessageFor(s => s.EvaluationEnd)
+            </div>
+            <input type="submit" name="save" value="Save" />
+        </fieldset>
+    }
+</div>
+
+<hr />
+
+<div>
+    <h4>Evaluation Reports</h4>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#evaluationStart").datepicker({
+            inline: true
+        });
+        $("#evaluationEnd").datepicker({
+            inline: true
+        });
+    });
+</script>

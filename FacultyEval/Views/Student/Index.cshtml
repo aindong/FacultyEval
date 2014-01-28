@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FacultyEval.Models.FacultyStudent>
+
+@{
+    ViewBag.Title = "Student Page | Faculty Evaluation System";
+}
+
+
+<h2>Index</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>You are logged in @Html.RouteLink("Log Out", new { controller = "Home", action = "StudentOut" })</p>
+    <table>
+        <thead>
+            <tr>
+                <td>Faculty ID</td>
+                <td>Faculty Name</td>
+                <td>Subject</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var Faculty in Model)
+            {
+                <tr>
+                    <td>@Faculty.Faculty.facultyID</td>
+                    <td>@Faculty.Faculty.facultyName</td>
+                    <td>@Faculty.Subject.subjectDesc</td>
+                    @if(ViewBag.EvaluationStatus)
+                    {
+                        if(@Faculty.resultID == 0)
+                        {
+                            <td>@Html.ActionLink("Evaluate", "EvaluateFaculty", "Student", new { stid = Faculty.studentID, fid = Faculty.facultyID, sid = Faculty.subjectID }, null)</td>
+                        }
+                        else
+                        {
+                            <td>Evaluated</td>
+                        }
+                    }
+                    else
+                    {
+                        <td>Evaluation Not Started</td>
+                    }
+                    
+                    
+                </tr>
+            }
+        </tbody>
+
+        
+    </table>
+}
+else
+{
+    <p>You need to log in in order to access this area</p>
+}
