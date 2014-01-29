@@ -49,6 +49,13 @@ namespace FacultyEval.Controllers
             return View();
         }
 
+        public ActionResult FacultyOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         private bool isValid(string userID, string password)
         {
             bool isvalid = false;
