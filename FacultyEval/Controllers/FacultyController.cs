@@ -15,7 +15,7 @@ namespace FacultyEval.Controllers
         public ActionResult Index()
         {
 
-            if(!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated && Session["role"] != "faculty")
             {
                 return RedirectToAction("FacultyLogin");
             }
@@ -40,6 +40,7 @@ namespace FacultyEval.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(faculty.userID, false);
                     Session["userID"] = faculty.userID;
+                    Session["role"] = "faculty";
                     return RedirectToAction("Index");
                 }
             }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="fesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="fesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="userID" />
@@ -184,8 +184,7 @@
             <End Role="FacultyStudent" EntitySet="FacultyStudent" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="fesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -349,7 +348,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="fesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="fesContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="EvaluationResults" EntityType="Self.EvaluationResult" />
           <EntitySet Name="EvaluationSchedules" EntityType="Self.EvaluationSchedule" />
@@ -383,7 +382,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="fesModelStoreContainer" CdmEntityContainer="fesEntities">
+        <EntityContainerMapping StorageEntityContainer="fesModelStoreContainer" CdmEntityContainer="fesContext">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="fesModel.Admin">
               <MappingFragment StoreEntitySet="Admin">

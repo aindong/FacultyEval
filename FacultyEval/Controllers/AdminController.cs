@@ -13,7 +13,7 @@ namespace FacultyEval.Controllers
         // GET: /Admin/
         public ActionResult Index()
         {
-            if(!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated && Session["role"] != "admin")
             {
                 return RedirectToAction("AdminLogin");
             }
@@ -78,6 +78,7 @@ namespace FacultyEval.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(admin.userID, false);
                     Session["userID"] = admin.userID;
+                    Session["role"] = "admin";
                     return RedirectToAction("Index");
                 }
             }

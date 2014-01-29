@@ -17,7 +17,7 @@ namespace FacultyEval.Controllers
         public ActionResult Index()
         {
 
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated && Session["role"] != "student" )
             {
                 return RedirectToAction("Index", "Home");
             }

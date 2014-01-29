@@ -28,6 +28,7 @@ namespace FacultyEval.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(student.studentID, false);
                     Session["studentID"] = student.studentID;
+                    Session["role"] = "student";
                     return RedirectToAction("Index", "Student");
                 }
             }
