@@ -1,7 +1,32 @@
-﻿
+﻿@model FacultyEval.Models.Faculty
 
 @{
-    ViewBag.Title = "FacultyLogin";
+    ViewBag.Title = "Faculty Login";
 }
 
-<h2>FacultyLogin</h2>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(false, "Faculty authentication failed");
+    <div>
+        <fieldset>
+
+            <legend>Faculty Authentication</legend>
+
+            <div>@Html.LabelFor(u => u.userID)</div>
+            <div>
+                @Html.TextBoxFor(u => u.userID)
+                @Html.ValidationMessageFor(u => u.userID)
+            </div>
+
+            <div>@Html.LabelFor(u => u.password)</div>
+            <div>
+                @Html.PasswordFor(u => u.password)
+                @Html.ValidationMessageFor(u => u.password)
+            </div>
+
+            <input type="submit" value="Login" />
+        </fieldset>
+    </div>
+}
