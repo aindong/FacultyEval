@@ -13,7 +13,8 @@ namespace FacultyEval.Controllers
         // GET: /Admin/
         public ActionResult Index()
         {
-            if (!Request.IsAuthenticated && Session["role"] != "admin")
+            string role = Session["role"] != null ? Session["role"].ToString() : "";
+            if (!Request.IsAuthenticated || role != "admin")
             {
                 return RedirectToAction("AdminLogin");
             }
