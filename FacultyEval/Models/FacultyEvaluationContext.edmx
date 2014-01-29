@@ -49,7 +49,7 @@
           <Property Name="question27" Type="int" Nullable="false" />
           <Property Name="question28" Type="int" Nullable="false" />
           <Property Name="question29" Type="int" Nullable="false" />
-          <Property Name="comments" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="comments" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="EvaluationSchedule">
           <Key>
@@ -65,6 +65,8 @@
           </Key>
           <Property Name="facultyID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="facultyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="FacultyStudent">
           <Key>
@@ -259,7 +261,7 @@
           <Property Name="question27" Type="Int32" Nullable="false" />
           <Property Name="question28" Type="Int32" Nullable="false" />
           <Property Name="question29" Type="Int32" Nullable="false" />
-          <Property Name="comments" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="comments" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EvaluationSchedule" Relationship="fesModel.FK_EvaluationResult_EvaluationSchedule" FromRole="EvaluationResult" ToRole="EvaluationSchedule" />
           <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_EvaluationResult" FromRole="EvaluationResult" ToRole="FacultyStudent" />
         </EntityType>
@@ -279,6 +281,8 @@
           <Property Name="facultyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="facultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_Faculty" FromRole="Faculty" ToRole="FacultyStudent" />
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FacultyStudent">
           <Key>
@@ -439,6 +443,8 @@
           <EntitySetMapping Name="Faculties">
             <EntityTypeMapping TypeName="fesModel.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="facultyName" ColumnName="facultyName" />
                 <ScalarProperty Name="facultyID" ColumnName="facultyID" />
               </MappingFragment>

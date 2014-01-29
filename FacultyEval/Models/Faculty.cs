@@ -21,6 +21,8 @@ namespace FacultyEval.Models
     
         public string facultyID { get; set; }
         public string facultyName { get; set; }
+        public string userID { get; set; }
+        public string password { get; set; }
     
         public virtual ICollection<FacultyStudent> FacultyStudents { get; set; }
     }
