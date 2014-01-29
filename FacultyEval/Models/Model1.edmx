@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="fesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="fesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="userID" />
@@ -184,47 +184,19 @@
             <End Role="FacultyStudent" EntitySet="FacultyStudent" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="fesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="fesContext" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Admins" EntityType="fesModel.Admin" />
-          <EntitySet Name="EvaluationResults" EntityType="fesModel.EvaluationResult" />
-          <EntitySet Name="EvaluationSchedules" EntityType="fesModel.EvaluationSchedule" />
-          <EntitySet Name="Faculties" EntityType="fesModel.Faculty" />
-          <EntitySet Name="FacultyStudents" EntityType="fesModel.FacultyStudent" />
-          <EntitySet Name="Students" EntityType="fesModel.Student" />
-          <EntitySet Name="Subjects" EntityType="fesModel.Subject" />
-          <AssociationSet Name="FK_EvaluationResult_EvaluationSchedule" Association="fesModel.FK_EvaluationResult_EvaluationSchedule">
-            <End Role="EvaluationSchedule" EntitySet="EvaluationSchedules" />
-            <End Role="EvaluationResult" EntitySet="EvaluationResults" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FacultyStudent_EvaluationResult" Association="fesModel.FK_FacultyStudent_EvaluationResult">
-            <End Role="EvaluationResult" EntitySet="EvaluationResults" />
-            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FacultyStudent_Faculty" Association="fesModel.FK_FacultyStudent_Faculty">
-            <End Role="Faculty" EntitySet="Faculties" />
-            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FacultyStudent_Student" Association="fesModel.FK_FacultyStudent_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FacultyStudent_Subject" Association="fesModel.FK_FacultyStudent_Subject">
-            <End Role="Subject" EntitySet="Subjects" />
-            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
-          <Property Name="userID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="EvaluationResult">
           <Key>
@@ -262,8 +234,8 @@
           <Property Name="question28" Type="Int32" Nullable="false" />
           <Property Name="question29" Type="Int32" Nullable="false" />
           <Property Name="comments" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EvaluationSchedule" Relationship="fesModel.FK_EvaluationResult_EvaluationSchedule" FromRole="EvaluationResult" ToRole="EvaluationSchedule" />
-          <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_EvaluationResult" FromRole="EvaluationResult" ToRole="FacultyStudent" />
+          <NavigationProperty Name="EvaluationSchedule" Relationship="Self.FK_EvaluationResult_EvaluationSchedule" FromRole="EvaluationResult" ToRole="EvaluationSchedule" />
+          <NavigationProperty Name="FacultyStudents" Relationship="Self.FK_FacultyStudent_EvaluationResult" FromRole="EvaluationResult" ToRole="FacultyStudent" />
         </EntityType>
         <EntityType Name="EvaluationSchedule">
           <Key>
@@ -272,54 +244,54 @@
           <Property Name="scheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EvaluationStart" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EvaluationEnd" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="EvaluationResults" Relationship="fesModel.FK_EvaluationResult_EvaluationSchedule" FromRole="EvaluationSchedule" ToRole="EvaluationResult" />
+          <NavigationProperty Name="EvaluationResults" Relationship="Self.FK_EvaluationResult_EvaluationSchedule" FromRole="EvaluationSchedule" ToRole="EvaluationResult" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="facultyID" />
           </Key>
-          <Property Name="facultyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="facultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_Faculty" FromRole="Faculty" ToRole="FacultyStudent" />
-          <Property Name="userID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="facultyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="facultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FacultyStudents" Relationship="Self.FK_FacultyStudent_Faculty" FromRole="Faculty" ToRole="FacultyStudent" />
         </EntityType>
         <EntityType Name="FacultyStudent">
           <Key>
             <PropertyRef Name="studentID" />
             <PropertyRef Name="subjectID" />
           </Key>
-          <Property Name="studentID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="facultyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="subjectID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="studentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="facultyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subjectID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="resultID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EvaluationResult" Relationship="fesModel.FK_FacultyStudent_EvaluationResult" FromRole="FacultyStudent" ToRole="EvaluationResult" />
-          <NavigationProperty Name="Faculty" Relationship="fesModel.FK_FacultyStudent_Faculty" FromRole="FacultyStudent" ToRole="Faculty" />
-          <NavigationProperty Name="Student" Relationship="fesModel.FK_FacultyStudent_Student" FromRole="FacultyStudent" ToRole="Student" />
-          <NavigationProperty Name="Subject" Relationship="fesModel.FK_FacultyStudent_Subject" FromRole="FacultyStudent" ToRole="Subject" />
+          <NavigationProperty Name="EvaluationResult" Relationship="Self.FK_FacultyStudent_EvaluationResult" FromRole="FacultyStudent" ToRole="EvaluationResult" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK_FacultyStudent_Faculty" FromRole="FacultyStudent" ToRole="Faculty" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_FacultyStudent_Student" FromRole="FacultyStudent" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_FacultyStudent_Subject" FromRole="FacultyStudent" ToRole="Subject" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="studentID" />
           </Key>
-          <Property Name="studentID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="studentCOR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="studentFname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="studentMname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="studentLname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_Student" FromRole="Student" ToRole="FacultyStudent" />
+          <Property Name="studentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="studentCOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="studentFname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="studentMname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="studentLname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FacultyStudents" Relationship="Self.FK_FacultyStudent_Student" FromRole="Student" ToRole="FacultyStudent" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="subjectID" />
           </Key>
-          <Property Name="subjectID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="subjectDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FacultyStudents" Relationship="fesModel.FK_FacultyStudent_Subject" FromRole="Subject" ToRole="FacultyStudent" />
+          <Property Name="subjectID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subjectDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FacultyStudents" Relationship="Self.FK_FacultyStudent_Subject" FromRole="Subject" ToRole="FacultyStudent" />
         </EntityType>
         <Association Name="FK_EvaluationResult_EvaluationSchedule">
-          <End Type="fesModel.EvaluationSchedule" Role="EvaluationSchedule" Multiplicity="1" />
-          <End Type="fesModel.EvaluationResult" Role="EvaluationResult" Multiplicity="*" />
+          <End Role="EvaluationSchedule" Type="Self.EvaluationSchedule" Multiplicity="1" />
+          <End Role="EvaluationResult" Type="Self.EvaluationResult" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EvaluationSchedule">
               <PropertyRef Name="scheduleID" />
@@ -330,8 +302,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FacultyStudent_EvaluationResult">
-          <End Type="fesModel.EvaluationResult" Role="EvaluationResult" Multiplicity="1" />
-          <End Type="fesModel.FacultyStudent" Role="FacultyStudent" Multiplicity="*" />
+          <End Role="EvaluationResult" Type="Self.EvaluationResult" Multiplicity="1" />
+          <End Role="FacultyStudent" Type="Self.FacultyStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EvaluationResult">
               <PropertyRef Name="resultID" />
@@ -342,8 +314,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FacultyStudent_Faculty">
-          <End Type="fesModel.Faculty" Role="Faculty" Multiplicity="1" />
-          <End Type="fesModel.FacultyStudent" Role="FacultyStudent" Multiplicity="*" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+          <End Role="FacultyStudent" Type="Self.FacultyStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
               <PropertyRef Name="facultyID" />
@@ -354,8 +326,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FacultyStudent_Student">
-          <End Type="fesModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="fesModel.FacultyStudent" Role="FacultyStudent" Multiplicity="*" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="FacultyStudent" Type="Self.FacultyStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="studentID" />
@@ -366,8 +338,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FacultyStudent_Subject">
-          <End Type="fesModel.Subject" Role="Subject" Multiplicity="1" />
-          <End Type="fesModel.FacultyStudent" Role="FacultyStudent" Multiplicity="*" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="FacultyStudent" Type="Self.FacultyStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
               <PropertyRef Name="subjectID" />
@@ -377,105 +349,134 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="fesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="EvaluationResults" EntityType="Self.EvaluationResult" />
+          <EntitySet Name="EvaluationSchedules" EntityType="Self.EvaluationSchedule" />
+          <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+          <EntitySet Name="FacultyStudents" EntityType="Self.FacultyStudent" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <AssociationSet Name="FK_EvaluationResult_EvaluationSchedule" Association="Self.FK_EvaluationResult_EvaluationSchedule">
+            <End Role="EvaluationSchedule" EntitySet="EvaluationSchedules" />
+            <End Role="EvaluationResult" EntitySet="EvaluationResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacultyStudent_EvaluationResult" Association="Self.FK_FacultyStudent_EvaluationResult">
+            <End Role="EvaluationResult" EntitySet="EvaluationResults" />
+            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacultyStudent_Faculty" Association="Self.FK_FacultyStudent_Faculty">
+            <End Role="Faculty" EntitySet="Faculties" />
+            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacultyStudent_Student" Association="Self.FK_FacultyStudent_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacultyStudent_Subject" Association="Self.FK_FacultyStudent_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="FacultyStudent" EntitySet="FacultyStudents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="fesModelStoreContainer" CdmEntityContainer="fesContext" >
+        <EntityContainerMapping StorageEntityContainer="fesModelStoreContainer" CdmEntityContainer="fesEntities">
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="fesModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EvaluationResults">
             <EntityTypeMapping TypeName="fesModel.EvaluationResult">
               <MappingFragment StoreEntitySet="EvaluationResult">
-                <ScalarProperty Name="comments" ColumnName="comments" />
-                <ScalarProperty Name="question29" ColumnName="question29" />
-                <ScalarProperty Name="question28" ColumnName="question28" />
-                <ScalarProperty Name="question27" ColumnName="question27" />
-                <ScalarProperty Name="question26" ColumnName="question26" />
-                <ScalarProperty Name="question25" ColumnName="question25" />
-                <ScalarProperty Name="question24" ColumnName="question24" />
-                <ScalarProperty Name="question23" ColumnName="question23" />
-                <ScalarProperty Name="question22" ColumnName="question22" />
-                <ScalarProperty Name="question21" ColumnName="question21" />
-                <ScalarProperty Name="question20" ColumnName="question20" />
-                <ScalarProperty Name="question19" ColumnName="question19" />
-                <ScalarProperty Name="question18" ColumnName="question18" />
-                <ScalarProperty Name="question17" ColumnName="question17" />
-                <ScalarProperty Name="question16" ColumnName="question16" />
-                <ScalarProperty Name="question15" ColumnName="question15" />
-                <ScalarProperty Name="question14" ColumnName="question14" />
-                <ScalarProperty Name="question13" ColumnName="question13" />
-                <ScalarProperty Name="question12" ColumnName="question12" />
-                <ScalarProperty Name="question11" ColumnName="question11" />
-                <ScalarProperty Name="question10" ColumnName="question10" />
-                <ScalarProperty Name="question9" ColumnName="question9" />
-                <ScalarProperty Name="question8" ColumnName="question8" />
-                <ScalarProperty Name="question7" ColumnName="question7" />
-                <ScalarProperty Name="question6" ColumnName="question6" />
-                <ScalarProperty Name="question5" ColumnName="question5" />
-                <ScalarProperty Name="question4" ColumnName="question4" />
-                <ScalarProperty Name="question3" ColumnName="question3" />
-                <ScalarProperty Name="question2" ColumnName="question2" />
-                <ScalarProperty Name="question1" ColumnName="question1" />
-                <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
                 <ScalarProperty Name="resultID" ColumnName="resultID" />
+                <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+                <ScalarProperty Name="question1" ColumnName="question1" />
+                <ScalarProperty Name="question2" ColumnName="question2" />
+                <ScalarProperty Name="question3" ColumnName="question3" />
+                <ScalarProperty Name="question4" ColumnName="question4" />
+                <ScalarProperty Name="question5" ColumnName="question5" />
+                <ScalarProperty Name="question6" ColumnName="question6" />
+                <ScalarProperty Name="question7" ColumnName="question7" />
+                <ScalarProperty Name="question8" ColumnName="question8" />
+                <ScalarProperty Name="question9" ColumnName="question9" />
+                <ScalarProperty Name="question10" ColumnName="question10" />
+                <ScalarProperty Name="question11" ColumnName="question11" />
+                <ScalarProperty Name="question12" ColumnName="question12" />
+                <ScalarProperty Name="question13" ColumnName="question13" />
+                <ScalarProperty Name="question14" ColumnName="question14" />
+                <ScalarProperty Name="question15" ColumnName="question15" />
+                <ScalarProperty Name="question16" ColumnName="question16" />
+                <ScalarProperty Name="question17" ColumnName="question17" />
+                <ScalarProperty Name="question18" ColumnName="question18" />
+                <ScalarProperty Name="question19" ColumnName="question19" />
+                <ScalarProperty Name="question20" ColumnName="question20" />
+                <ScalarProperty Name="question21" ColumnName="question21" />
+                <ScalarProperty Name="question22" ColumnName="question22" />
+                <ScalarProperty Name="question23" ColumnName="question23" />
+                <ScalarProperty Name="question24" ColumnName="question24" />
+                <ScalarProperty Name="question25" ColumnName="question25" />
+                <ScalarProperty Name="question26" ColumnName="question26" />
+                <ScalarProperty Name="question27" ColumnName="question27" />
+                <ScalarProperty Name="question28" ColumnName="question28" />
+                <ScalarProperty Name="question29" ColumnName="question29" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EvaluationSchedules">
             <EntityTypeMapping TypeName="fesModel.EvaluationSchedule">
               <MappingFragment StoreEntitySet="EvaluationSchedule">
-                <ScalarProperty Name="EvaluationEnd" ColumnName="EvaluationEnd" />
-                <ScalarProperty Name="EvaluationStart" ColumnName="EvaluationStart" />
                 <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+                <ScalarProperty Name="EvaluationStart" ColumnName="EvaluationStart" />
+                <ScalarProperty Name="EvaluationEnd" ColumnName="EvaluationEnd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Faculties">
             <EntityTypeMapping TypeName="fesModel.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="facultyName" ColumnName="facultyName" />
                 <ScalarProperty Name="facultyID" ColumnName="facultyID" />
+                <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FacultyStudents">
             <EntityTypeMapping TypeName="fesModel.FacultyStudent">
               <MappingFragment StoreEntitySet="FacultyStudent">
-                <ScalarProperty Name="resultID" ColumnName="resultID" />
-                <ScalarProperty Name="subjectID" ColumnName="subjectID" />
-                <ScalarProperty Name="facultyID" ColumnName="facultyID" />
                 <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="facultyID" ColumnName="facultyID" />
+                <ScalarProperty Name="subjectID" ColumnName="subjectID" />
+                <ScalarProperty Name="resultID" ColumnName="resultID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="fesModel.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="studentLname" ColumnName="studentLname" />
-                <ScalarProperty Name="studentMname" ColumnName="studentMname" />
-                <ScalarProperty Name="studentFname" ColumnName="studentFname" />
-                <ScalarProperty Name="studentCOR" ColumnName="studentCOR" />
                 <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="studentCOR" ColumnName="studentCOR" />
+                <ScalarProperty Name="studentFname" ColumnName="studentFname" />
+                <ScalarProperty Name="studentMname" ColumnName="studentMname" />
+                <ScalarProperty Name="studentLname" ColumnName="studentLname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="fesModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
-                <ScalarProperty Name="subjectDesc" ColumnName="subjectDesc" />
                 <ScalarProperty Name="subjectID" ColumnName="subjectID" />
+                <ScalarProperty Name="subjectDesc" ColumnName="subjectDesc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

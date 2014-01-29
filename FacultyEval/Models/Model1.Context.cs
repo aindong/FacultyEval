@@ -13,10 +13,10 @@ namespace FacultyEval.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class fesContext : DbContext
+    public partial class fesEntities : DbContext
     {
-        public fesContext()
-            : base("name=fesContext")
+        public fesEntities()
+            : base("name=fesEntities")
         {
         }
     

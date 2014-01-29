@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace FacultyEval.Controllers
 {
@@ -13,6 +14,12 @@ namespace FacultyEval.Controllers
 
         public ActionResult Index()
         {
+
+            if(!Request.IsAuthenticated)
+            {
+                return RedirectToAction("FacultyLogin");
+            }
+
             return View();
         }
 
@@ -29,7 +36,12 @@ namespace FacultyEval.Controllers
 
             if(ModelState.IsValid)
             {
-
+                if(isValid(faculty.userID, faculty.password))
+                {
+                    FormsAuthentication.SetAuthCookie(faculty.userID, false);
+                    Session["userID"] = faculty.userID;
+                    return RedirectToAction("Index");
+                }
             }
 
 
@@ -42,11 +54,11 @@ namespace FacultyEval.Controllers
 
             using (var db = new Models.fesContext())
             {
-                var admin = db.Faculties.FirstOrDefault(u => u.userID == userID);
+                var faculty = db.Faculties.FirstOrDefault(u => u.userID == userID);
 
-                if (admin != null)
+                if (faculty != null)
                 {
-                    if (admin.password == password)
+                    if (faculty.password == password)
                     {
                         isvalid = true;
                     }
